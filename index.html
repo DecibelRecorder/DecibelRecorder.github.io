@@ -1,1 +1,395 @@
-Coming soon...
+<html>
+<head>
+  <title>DecibelRecoder.com</title>
+  <base href="/">
+  <!-- General META -->
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <!-- Semantic META -->
+  <meta name="keywords" content="decibel, decibel meter, online decibel, online decibel meter, record sound, monitor sound">
+  <meta name="description" content="Record decibel levels online">
+
+  <!-- Facebook META -->
+  <meta property="fb:app_id" content="1219287611434270">
+  <meta property="og:site_name" content="DecibelRecorder.com">
+  <meta property="og:title" content="DecibelRecorder.com">
+  <meta property="og:description" content="Record decibel levels online">
+  <meta property="og:url" content="http://decibelrecorder.com">
+  <meta property="og:image" content="/img/brand/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter META -->
+  <meta name="twitter:title" content="DecibelRecorder">
+  <meta name="twitter:description" content="Record decibel levels online">
+  <meta name="twitter:url" content="http://decibelrecorder.com">
+  <meta name="twitter:image" content="/img/brand/logo.png">
+
+  <!-- Fav Icon -->
+  <link href="/favicons/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/faviconsapple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/favicons/manifest.json">
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+
+  <!--Application CSS Files-->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+  <style>
+    .md-docs-dark-theme {
+    background-color: #424242;
+    color: #fff;
+    text-align: center;
+}
+
+
+.homepageSplash {
+  background-image: url('/images/microphone.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 600px;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.14), 0 0 2px 2px rgba(0, 0, 0, 0.098), 0 0 5px 1px rgba(0, 0, 0, 0.084);
+}
+
+.heroText {
+    font-size: 3.6em;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: 200px;
+    padding-bottom: 10px;
+    text-shadow: 2px 2px 5px #555;
+}
+
+.heroTextTwo {
+    font-size: 1.8em;
+    text-align: center;
+    color: #FFFFFF;
+    padding-bottom: 10px;
+    text-shadow: 1px 1px 5px #555;
+}
+
+
+@media (max-width: 600px) {
+  .heroText {
+    font-size: 1.6em;
+  }
+  .heroTextTwo {
+    font-size: 1.6em;
+  }
+  .heroTextDescription {
+    font-size: 1.0em;
+  }
+}
+
+md-docs-dark-theme a,a:hover,a:visited {
+  color: rgba(158,158,158,0.2);;
+}
+
+.md-button.splash {
+    text-transform: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    display: inline-block;
+    width: 200px;
+}
+
+.menuBtn {
+    border: none;
+    height: 38px;
+    margin: 16px;
+    width: 36px;
+}
+
+.menuBtn {
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGcgaWQ9IkhlYWRlciI+CiAgICA8Zz4KICAgICAgICA8cmVjdCB4PSItNjE4IiB5PSItMjIzMiIgZmlsbD0ibm9uZSIgd2lkdGg9IjE0MDAiIGhlaWdodD0iMzYwMCIvPgogICAgPC9nPgo8L2c+CjxnIGlkPSJMYWJlbCI+CjwvZz4KPGcgaWQ9Ikljb24iPgogICAgPGc+CiAgICAgICAgPHJlY3QgZmlsbD0ibm9uZSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ii8+CiAgICAgICAgPHBhdGggZD0iTTMsMThoMTh2LTJIM1YxOHogTTMsMTNoMTh2LTJIM1YxM3ogTTMsNnYyaDE4VjZIM3oiIHN0eWxlPSJmaWxsOiNmM2YzZjM7Ii8+CiAgICA8L2c+CjwvZz4KPGcgaWQ9IkdyaWQiIGRpc3BsYXk9Im5vbmUiPgogICAgPGcgZGlzcGxheT0iaW5saW5lIj4KICAgIDwvZz4KPC9nPgo8L3N2Zz4=) no-repeat  center center;
+}
+
+
+md-content.subscribeNewsletter {
+  background-color: 009688;
+  color: rgba(255,255,255,0.87);
+}
+
+.subscribeNewsletter md-input-container label {
+  color: #DDD;
+}
+
+.subscribeNewsletter md-input-container input {
+  border-color: #DDD;
+}
+
+.subscribeNewsletter md-input-container.md-input-focused label {
+  color: white;
+}
+
+.subscribeNewsletter md-input-container.md-input-focused input {
+  border-color: #DDD;
+}
+
+.subscribeNewsletter md-input-container.md-input-has-value label {
+  color: white;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.docs-menu .md-button {
+    border-radius: 0;
+    color: inherit;
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    padding: 0 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+}
+
+.docs-menu>li {
+    border-top: 1px solid #c8c8c8;
+    border-top: 1px solid rgba(0,0,0,.12);
+}
+
+md-sidenav ul {
+      padding: 0;
+    margin: 0;
+}
+
+.docs-menu li {
+    margin: 0;
+}
+
+ul li {
+    margin-left: 16px;
+    margin-top: 3px;
+    list-style-position: inside;
+}
+
+  </style>
+
+</head>
+<body class=""  ng-app="myApp" ng-controller="HomeController">
+<md-toolbar class="md-default-theme md-fixed-toolbar ng-scope">
+  <header class="md-toolbar-tools ng-scope"><button ng-click="toggleSidenav('left')" hide-gt-sm="" class="menuBtn hide-gt-sm ng-scope">
+  <span class="visually-hidden">Menu</span>
+</button>
+<a href="/" class="ng-scope">
+  <img src="images/250x30Logo.png">
+</a>
+<span flex="" class="ng-scope flex"></span>
+<div hide-xs="" hide-sm="" layout="row" class="hide-sm hide-xs ng-scope layout-row">
+<a class="md-button md-ink-ripple" ng-transclude="" href="http://www.startuppilots.com" aria-label="Training"><span class="ng-scope">StartupPilots</span></a>
+<a class="md-button md-ink-ripple" ng-transclude="" href="http://www.startuppilots.com/contact" aria-label="Contact"><span class="ng-scope">Contact</span></a>
+</div>
+</header>
+</md-toolbar>
+<div class="ng-scope">
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2 md-closed ng-scope ng-isolate-scope" md-component-id="left" tabindex="-1">
+  <md-toolbar class="md-theme-indigo">
+    <h1 class="md-toolbar-tools">Menu</h1>
+  </md-toolbar>
+  <md-content flex="" role="navigation" class="md-default-theme flex">
+    <ul class="docs-menu">
+      <li class="parent-list-item ng-scope" ng-class="{'parentActive' : isSectionSelected(section)}">
+              <menu-link section="section" class="ng-scope ng-isolate-scope"><a class="md-button md-default-theme active" ng-class="{'active' : isSelected()}" ng-href="/" ng-click="focusSection()" tabindex="0" href="/">
+                <span class="ng-binding ng-scope">
+              Home
+            </span>
+            <div class="md-ripple-container"></div>
+          </a>
+        </menu-link>
+        </li>
+      <li class="parent-list-item ng-scope" ng-class="{'parentActive' : isSectionSelected(section)}">
+              <menu-link section="section" class="ng-scope ng-isolate-scope"><a class="md-button md-default-theme active" ng-class="{'active' : isSelected()}" ng-href="http://www.startuppilots.com" ng-click="focusSection()" tabindex="0" href="http://www.startuppilots.com">
+                <span class="ng-binding ng-scope">
+              StartupPilots
+            </span>
+            <div class="md-ripple-container"></div>
+          </a>
+        </menu-link>
+        </li>
+        <li class="parent-list-item ng-scope" ng-class="{'parentActive' : isSectionSelected(section)}">
+              <menu-link section="section" class="ng-scope ng-isolate-scope"><a class="md-button md-default-theme active" ng-class="{'active' : isSelected()}" ng-href="http://www.startuppilots.com/contact" ng-click="focusSection()" tabindex="0" href="http://www.startuppilots.com/contact">
+                <span class="ng-binding ng-scope">
+              Contact
+            </span>
+            <div class="md-ripple-container"></div>
+          </a>
+        </menu-link>
+        </li>
+    </ul>
+    </md-content>
+</md-sidenav></div>
+<section class="ng-scope">
+  <md-content class="md-default-theme out-container">
+  
+  <!-- uiView:  --><section data-ui-view="" class="ng-scope">
+  <section  class="ng-scope">
+  <div class="homepageSplash md-default-theme layout-column" layout="column">
+    <div flex="35" class="flex-35"></div>
+    <div flex="33" class="flex-33">
+      <center>
+      <!--
+        <div class="heroText">
+          I'm building a new startup. <br>Every two weeks.
+        </div>
+        <div class="heroTextTwo">
+          Submit your ideas & vote on others!
+        </div>
+        -->
+        <div class="heroText">
+          Multiple Signatures for your email
+        </div>
+        <div class="heroTextTwo">
+          Personalise your emails
+        </div>
+        <br>
+        <a class="md-raised md-primary splash md-button md-ink-ripple" ng-transclude="" href="#newsletter" aria-label="View Startups"><span class="ng-scope">
+          Coming Soon
+        </span></a>
+        <!-- <md-button class="md-raised splash" href="/submit">
+          Submit Your Idea </md-button> -->
+      </center>
+    </div>
+  </div>
+</section>
+<md-content class="subscribeNewsletter md-padding" style="text-align:center">
+  <!-- Begin MailChimp Signup Form -->
+  <center>
+<div id="mc_embed_signup">
+<form action="//startuppilots.us12.list-manage.com/subscribe/post?u=bec57b6339bfe0d6ca96c1c8d&amp;id=539f21672f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll" name="newsletter">
+    <a name="newsletter"></a>
+  <h3 style="margin-bottom:0"> Subscribe to the Startup Pilots Newsletter </h3>
+  <p style="margin-top:0"> For updates on this and future projects </p>
+  <md-input-container class="md-block" style="max-width:400px">
+    <label>Email Address</label>
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" required>
+  </md-input-container>
+
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_bec57b6339bfe0d6ca96c1c8d_539f21672f" tabindex="-1" value=""></div>
+    <div class="clear"><md-button class="md-raised md-padding" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+    Subscribe
+    </md-button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </center>
+</md-content>
+<section class="md-padding md-docs-dark-theme ng-scope">
+  Copyright 2016 <a href="http://www.startuppilots.com">StartupPilots</a>. All rights reserved.
+</section></section>
+
+  </md-content>
+</section>
+
+<!--Application JavaScript Files-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-aria.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+  <script>
+    angular.module('myApp', ['ngMaterial']);
+
+
+    angular.module('myApp').config(['$mdThemingProvider',
+  function ($mdThemingProvider) {
+
+   $mdThemingProvider.theme('default')
+    .primaryPalette('deep-purple', {
+      'default': '500', // by default use shade 400 from the pink palette for primary intentions
+      'hue-1': '100', // use shade 100 for the <code>md-hue-1</code> class
+      'hue-2': '700', // use shade 600 for the <code>md-hue-2</code> class
+      'hue-3': 'A700' // use shade A100 for the <code>md-hue-3</code> class
+    })
+    // If you specify less than all of the keys, it will inherit from the
+    // default shades
+    .accentPalette('pink', {
+      'default': '500' // use shade 200 for default, and keep all other shades the same
+    });
+
+  }
+  ]);
+
+
+    angular.module('myApp').controller('HomeController', ['$scope', '$rootScope', '$mdSidenav',
+  function ($scope, $rootScope, $mdSidenav) {
+
+
+    // Toggle the menu items
+    $scope.isCollapsed = false;
+    $scope.toggleCollapsibleMenu = function () {
+      $scope.isCollapsed = !$scope.isCollapsed;
+    };
+
+    // Collapsing the menu after navigation
+    $scope.$on('$stateChangeSuccess', function () {
+      $scope.isCollapsed = false;
+    });
+
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      $mdOpenMenu(ev);
+    };
+
+    $rootScope.showNav = true;
+
+    $scope.toggleSidenav = function() {
+      //$rootScope.showNav = !$rootScope.showNav;
+      var nav = $mdSidenav('left');
+      nav.toggle();
+    };
+  }
+]);
+
+  </script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73700457-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
