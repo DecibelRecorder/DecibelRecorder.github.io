@@ -261,33 +261,26 @@ ul li {
   
   <!-- uiView:  --><section data-ui-view="" class="ng-scope">
   <section  class="ng-scope">
-  <div class="homepageSplash md-default-theme layout-column" layout="column">
+  <div class="md-default-theme layout-column" layout="column">
     <div flex="35" class="flex-35"></div>
     <div flex="33" class="flex-33">
       <center>
-      <!--
-        <div class="heroText">
-          I'm building a new startup. <br>Every two weeks.
-        </div>
-        <div class="heroTextTwo">
-          Submit your ideas & vote on others!
-        </div>
-        -->
-        <div class="heroText">
-          Decibel meter and analytics
-        </div>
-        <div class="heroTextTwo">
-          Available Online & for Android
-        </div>
-        <br>
-        <a class="md-raised md-primary splash md-button md-ink-ripple" ng-transclude="" href="/online.html" aria-label="View Startups"><span class="ng-scope">
-          Online Meter
-        </span></a>
-        <a class="md-raised md-accent splash md-button md-ink-ripple" ng-transclude="" href="#newsletter" aria-label="View Startups"><span class="ng-scope">
-          Android Coming Soon
-        </span></a>
-        <!-- <md-button class="md-raised splash" href="/submit">
-          Submit Your Idea </md-button> -->
+      
+
+        <h2> Realtime Decibel Meter </h2>
+      <div id="realtime" class="db"></div>
+      <h4> 5 Second Decibel Meter </h4>
+      <p><i>Recorded </i></p>
+      <div id="currentLevel" class="db"></div> 
+      <br>
+      <div id="sources_view" style="display:block">
+        <div id="currentLeveltwo"></div> <br>
+        <div id="currentLevelthree"></div><br>
+        <div id="currentLevelfour"></div>
+        <div id="audioSources"></div>
+      </div>
+
+
       </center>
     </div>
   </div>
@@ -332,6 +325,10 @@ ul li {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js"></script>
+
+<script src="/customlib/charts/Chart.min.js"></script>
+<script src="/customlib/decibel-meter/decibel-meter.js"></script>
+<script src="/customlib/jquery/dist/jquery.min.js"></script>
   <script>
     angular.module('myApp', ['ngMaterial']);
 
@@ -384,8 +381,72 @@ ul li {
     };
   }
 ]);
+  </script>
+
+ <script>
+    var meter = DecibelMeter.create('unique-id');
+    var meterTwo = DecibelMeter.create('two');
+    var meterThree = DecibelMeter.create('three');
+    var meterFour = DecibelMeter.create('fpir');
+
+    meterTwo.on('ready', function(meterTwo, sources) {
+      meterTwo.connect(sources[0], function() {
+        meterTwo.listen();
+      });
+      meterTwo.on('sample', function(dB, percent, value) {
+        document.getElementById('currentLeveltwo').innerHTML = dB;
+      });
+    });
+
+    meterThree.on('ready', function(meterThree, sources) {
+      meterThree.connect(sources[1], function() {
+        meterThree.listen();
+      });
+      meterThree.on('sample', function(dB, percent, value) {
+        document.getElementById('currentLevelthree').innerHTML = dB;
+      });
+    });
+
+    meterFour.on('ready', function(meterFour, sources) {
+      meterFour.connect(sources[2], function() {
+        meterFour.listen();
+      });
+      meterFour.on('sample', function(dB, percent, value) {
+        document.getElementById('currentLevelfour').innerHTML = dB;
+      });
+    });
+
+
+    var audioSources;
+
+    var currentLevel = 0;
+    var currentPercentage = 0;
+
+    var connectCallback = function() {
+      meter.listen();
+    }
+
+    var lastNumber = 0;
+
+    meter.on('ready', function (meter, sources) {
+      audioSources = sources;
+
+      meter.connect(audioSources[0], connectCallback); // connect to first source, assumes meter is ready
+      meter.on('sample', function (dB, percent, value) {
+        //var actualDB = Number((parseFloat(dB) + 110).toFixed(1));
+        var actualDB = dB;
+        var level = document.getElementById('realtime');
+        level.innerHTML = actualDB + ' dB';
+
+        if(lastNumber < actualDB) {
+          lastNumber = actualDB;
+        }
+        currentPercentage = percent;
+      });
+    });
 
   </script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
