@@ -404,13 +404,16 @@ ul li {
     var currentPercentage = 0;
 
     document.addEventListener("DOMContentLoaded", function(event) { 
+      console.log('Loaded');
       window.ctx = document.getElementById("myChart").getContext("2d");
       window.myNewChart = new Chart(ctx).Line([]);
       window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
       window.myMinuteChart = new Chart(ctxMinute).Line([]);
     });
     var connectCallback = function() {
+      console.log('Started Listening');
       meter.listen();
+      console.log('Listened');
     }
 
     var lastNumber = 0;
@@ -419,8 +422,12 @@ ul li {
     meter.on('ready', function (meter, sources) {
       audioSources = sources;
 
+      console.log('Meter ready');
+
       meter.connect(audioSources[0], connectCallback); // connect to first source, assumes meter is ready
       meter.on('sample', function (dB, percent, value) {
+
+        console.log('Sampled';)
         //var actualDB = Number((parseFloat(dB) + 110).toFixed(1));
         var actualDB = dB;
         console.log(dB);
