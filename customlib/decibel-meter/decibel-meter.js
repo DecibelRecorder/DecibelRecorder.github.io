@@ -36,8 +36,8 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		return undefined;
 	}
 	
-	if (!window.MediaStreamTrack.getSources) {
-		throw new Error('DecibelMeter: MediaStreamTrack.getSources() not supported');
+	if (!window.MediaStreamTrack.enumerateDevices()) {
+		throw new Error('DecibelMeter: MediaStreamTrack.enumerateDevices() not supported');
 		return undefined;
 	}
 	
@@ -45,7 +45,7 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		sourcesIndex = {},
 		sourcesReady = false;
 	
-	MediaStreamTrack.getSources(function (srcs) {
+	MediaStreamTrack.enumerateDevices(function (srcs) {
 		srcs.forEach( function (source) {
 			if (source.kind === 'audio') {
 				sources.push(source);
