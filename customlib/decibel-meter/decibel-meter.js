@@ -47,6 +47,8 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		sourcesReady = false;
 	
 	navigator.mediaDevices.enumerateDevices().then(function (srcs) {
+		console.log('enumerateDevices');
+		console.log(srcs);
 		srcs.forEach( function (source) {
 			if (source.kind === 'audio') {
 				sources.push(source);
