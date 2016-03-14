@@ -266,8 +266,8 @@ ul li {
   <!-- uiView:  --><section data-ui-view="" class="ng-scope">
   <section  class="ng-scope">
   <div class="md-default-theme layout-column" layout="column">
-    <div flex="35" class="flex-35"></div>
-    <div flex="33" class="flex-33">
+    <div flex="35" class="flex-5"></div>
+    <div flex="33" class="flex-200">
       <center>
       
 
@@ -419,10 +419,11 @@ ul li {
         var actualDB = dB;
         var level = document.getElementById('realtime');
         level.innerHTML = actualDB + ' dB';
-
+        lastNumber = actualDB;
+        /*
         if(lastNumber < actualDB) {
           lastNumber = actualDB;
-        }
+        } */
         currentPercentage = percent;
       });
     });
@@ -485,11 +486,11 @@ ul li {
       //Get average of the seconds
       var averageAmount = 0;
       var numberOfAverage = 10;
-      if(storeData.length > number) {
-        for (var i = 0; i > number; i++) {
+      if(storeData.length > numberOfAverage) {
+        for (var i = 0; i > numberOfAverage; i++) {
           averageAmount += storeData[storeData.length - i];
         }
-        averageAmount = averageAmount / number;
+        averageAmount = averageAmount / numberOfAverage;
         myMinuteChart.addData([lastNumber], datetime);
       }
     }
