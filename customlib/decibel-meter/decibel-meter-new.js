@@ -229,6 +229,11 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 					percent = value / 255,
 					dB = meter.connection.analyser.minDecibels + ((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent);
 				
+					console.log('Ello');
+					console.log(meter.connection.analyser.minDecibels);
+					console.log(meter.connection.analyser.maxDecibels);
+					console.log(percent);
+
 				dispatch(meter, 'sample', [dB, percent, value]);
 			}
 			requestAnimationFrame(update);
