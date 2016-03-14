@@ -446,7 +446,8 @@ ul li {
     setInterval(updateDB, 500); //Normally 5000
 
     var createLimitedDb = function(db) {
-      return db.toFixed(1);
+      //return db;
+      return parseFloat(db).toFixed(1);
     };
 
 
@@ -460,16 +461,16 @@ ul li {
     var numberOfResults = 0;
 
     var refreshSecondsGraphs = function() {
-            var currentdate = new Date();
+        var currentdate = new Date();
       var datetime = convertDateTime(currentdate);
         numberOfResults++;
-        myNewChart.update();
+        
         if(numberOfResults > 10) {
           myNewChart.removeData();
           numberOfResults--;
         }
         myNewChart.addData([lastNumber], datetime);
-
+        myNewChart.update();
     };
 
     var convertDateTime = function(currentdate) {
@@ -498,6 +499,7 @@ ul li {
         averageAmount = averageAmount / numberOfAverage;
         myMinuteChart.addData([lastNumber], datetime);
       }
+      myMinuteChart.update();
     }
 
 
