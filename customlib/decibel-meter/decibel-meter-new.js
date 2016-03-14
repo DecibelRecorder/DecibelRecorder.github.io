@@ -221,6 +221,18 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		
 		function update() {
 			
+						if (meter.listening && meter.handle.sample) {
+				
+				meter.connection.analyser.getByteFrequencyData(meter.connection.lastSample);
+				
+				var value = meter.connection.lastSample[0],
+					percent = value / 255,
+					dB = meter.connection.analyser.minDecibels + ((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent);
+				
+				dispatch(meter, 'sample', [dB, percent, value]);
+			}
+			
+			/*
 			if (meter.listening && meter.handle.sample) {
 				
 
@@ -277,6 +289,8 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 			  //var dB = 20 * Math.log10(rms); 
 				dispatch(meter, 'sample', [potentialDb, percent, value]);
 			}
+
+			*/
 			
 			requestAnimationFrame(update);
 		}
