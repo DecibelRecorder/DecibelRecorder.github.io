@@ -405,10 +405,7 @@ ul li {
 
     document.addEventListener("DOMContentLoaded", function(event) { 
       console.log('Loaded');
-      window.ctx = document.getElementById("myChart").getContext("2d");
-      window.myNewChart = new Chart(ctx).Line([]);
-      window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
-      window.myMinuteChart = new Chart(ctxMinute).Line([]);
+
     });
     var connectCallback = function() {
       console.log('Started Listening');
@@ -437,12 +434,32 @@ ul li {
         console.log(dB);
         var level = document.getElementById('realtime');
         level.innerHTML = actualDB + ' dB';
+
+
+
+        if(lastNumber === 0) {
+
+          var data = {
+            labels: [],
+            datasets: [
+            {
+              label: 'Decibels',
+              data: []
+            }]
+           };
+          window.ctx = document.getElementById("myChart").getContext("2d");
+          window.myNewChart = new Chart(ctx).Line(data);
+          window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
+          window.myMinuteChart = new Chart(ctxMinute).Line(data);
+        }
+
         lastNumber = dB;
         /*
         if(lastNumber < actualDB) {
           lastNumber = actualDB;
         } */
         currentPercentage = percent;
+
       });
     });
 
