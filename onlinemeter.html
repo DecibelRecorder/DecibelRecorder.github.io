@@ -427,7 +427,7 @@ ul li {
       meter.connect(audioSources[0], connectCallback); // connect to first source, assumes meter is ready
       meter.on('sample', function (dB, percent, value) {
 
-        console.log('Sampled';)
+        console.log('Sampled');
         //var actualDB = Number((parseFloat(dB) + 110).toFixed(1));
         var actualDB = dB;
         console.log(dB);
