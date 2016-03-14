@@ -200,6 +200,10 @@ ul li {
     list-style-position: inside;
 }
 
+#currentLevel {
+  font-size: 80px;
+}
+
   </style>
 
 </head>
@@ -268,10 +272,22 @@ ul li {
       
 
         <h2> Realtime Decibel Meter </h2>
-      <div id="realtime" class="db"></div>
-      <h4> 5 Second Decibel Meter </h4>
-      <p><i>Recorded </i></p>
+      <div id="realtime" class="db" style="display:none"></div>
       <div id="currentLevel" class="db"></div> 
+      <h4> 5 Second Decibel Meter </h4>
+      <p><i>Graphs </i></p>
+
+      <div id="loading"><i> Please wait... loading </i> </div>
+
+      <h4> Last 30 seconds Graph </h4>
+
+      <canvas id="myChart" width="400" height="400"></canvas>
+
+      <h4> Last 30 minutes Graph </h4>
+
+      <canvas id="myMinuteChart" width="400" height="400"></canvas>
+
+
       <br>
       <div id="sources_view" style="display:block">
         <div id="currentLeveltwo"></div> <br>
@@ -279,8 +295,6 @@ ul li {
         <div id="currentLevelfour"></div>
         <div id="audioSources"></div>
       </div>
-
-
       </center>
     </div>
   </div>
@@ -385,40 +399,7 @@ ul li {
 
  <script>
     var meter = DecibelMeter.create('unique-id');
-    var meterTwo = DecibelMeter.create('two');
-    var meterThree = DecibelMeter.create('three');
-    var meterFour = DecibelMeter.create('fpir');
-
-    meterTwo.on('ready', function(meterTwo, sources) {
-      meterTwo.connect(sources[0], function() {
-        meterTwo.listen();
-      });
-      meterTwo.on('sample', function(dB, percent, value) {
-        document.getElementById('currentLeveltwo').innerHTML = dB;
-      });
-    });
-
-    meterThree.on('ready', function(meterThree, sources) {
-      meterThree.connect(sources[1], function() {
-        meterThree.listen();
-      });
-      meterThree.on('sample', function(dB, percent, value) {
-        document.getElementById('currentLevelthree').innerHTML = dB;
-      });
-    });
-
-    meterFour.on('ready', function(meterFour, sources) {
-      meterFour.connect(sources[2], function() {
-        meterFour.listen();
-      });
-      meterFour.on('sample', function(dB, percent, value) {
-        document.getElementById('currentLevelfour').innerHTML = dB;
-      });
-    });
-
-
     var audioSources;
-
     var currentLevel = 0;
     var currentPercentage = 0;
 
@@ -427,6 +408,7 @@ ul li {
     }
 
     var lastNumber = 0;
+    var storedData = [];
 
     meter.on('ready', function (meter, sources) {
       audioSources = sources;
@@ -444,6 +426,78 @@ ul li {
         currentPercentage = percent;
       });
     });
+
+    var emitName = 'dbChange';
+
+    var updateDB = function() {
+      var level = document.getElementById('currentLevel');
+      level.innerHTML = createLimitedDb(lastNumber) + ' dB'; // display current dB level
+      //socket.emit(emitName, lastNumber);
+      //lastNumber = 0;
+      storeData(lastNumber);
+      refreshSecondsGraphs();
+    };
+    setInterval(updateDB, 500); //Normally 5000
+
+    var createLimitedDb = function(db) {
+      return db.toFixed(1);
+    };
+
+
+    var storeData = function(data) {
+      storedData.push({
+        created: new Date(),
+        value: data
+      });
+    };
+
+    var numberOfResults = 0;
+
+    var refreshSecondsGraphs = function() {
+            var currentdate = new Date();
+      var datetime = convertDateTime(currentdate);
+        numberOfResults++;
+        myNewChart.update();
+        if(numberOfResults > 10) {
+          myNewChart.removeData();
+          numberOfResults--;
+        }
+        myNewChart.addData([lastNumber], datetime);
+
+    };
+
+    var convertDateTime = function(currentdate) {
+     return currentdate.getDate() + "/"
+                  + (currentdate.getMonth()+1)  + "/"
+                  + currentdate.getFullYear() + " @ "
+                  + currentdate.getHours() + ":"
+                  + currentdate.getMinutes() + ":"
+                  + currentdate.getSeconds();
+    }
+
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Line([]);
+
+
+    var secondsData = [];
+
+    var refreshMinutes = function() {
+      //Get average of the seconds
+      var averageAmount = 0;
+      var numberOfAverage = 10;
+      if(storeData.length > number) {
+        for (var i = 0; i > number; i++) {
+          averageAmount += storeData[storeData.length - i];
+        }
+        averageAmount = averageAmount / number;
+        myMinuteChart.addData([lastNumber], datetime);
+      }
+    }
+
+    var ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
+    var myMinuteChart = new Chart(ctxMinute).Line([]);
+
+    setInterval(refreshMinutes, 5000); //Normally 5000
 
   </script>
 
