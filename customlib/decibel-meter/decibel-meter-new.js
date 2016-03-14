@@ -221,7 +221,7 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		
 		function update() {
 			
-						if (meter.listening && meter.handle.sample) {
+				if (meter.listening && meter.handle.sample) {
 				
 				meter.connection.analyser.getByteFrequencyData(meter.connection.lastSample);
 				
