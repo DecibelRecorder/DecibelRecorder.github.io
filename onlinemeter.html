@@ -266,8 +266,8 @@ ul li {
   <!-- uiView:  --><section data-ui-view="" class="ng-scope">
   <section  class="ng-scope">
   <div class="md-default-theme layout-column" layout="column">
-    <div flex="35" class="flex-5"></div>
-    <div flex="33" class="flex-200">
+    <div flex="5" class="flex-5"></div>
+    <div flex="200" class="flex-200">
       <center>
       
 
@@ -403,6 +403,11 @@ ul li {
     var currentLevel = 0;
     var currentPercentage = 0;
 
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Line([]);
+    var ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
+    var myMinuteChart = new Chart(ctxMinute).Line([]);
+
     var connectCallback = function() {
       meter.listen();
     }
@@ -476,11 +481,11 @@ ul li {
                   + currentdate.getSeconds();
     }
 
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Line([]);
 
 
     var secondsData = [];
+
+
 
     var refreshMinutes = function() {
       //Get average of the seconds
@@ -495,8 +500,7 @@ ul li {
       }
     }
 
-    var ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
-    var myMinuteChart = new Chart(ctxMinute).Line([]);
+
 
     setInterval(refreshMinutes, 5000); //Normally 5000
 
