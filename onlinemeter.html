@@ -271,7 +271,7 @@ ul li {
       <center>
       
 
-        <h2> Realtime Decibel Meter </h2>
+        <h2> Online Decibel Meter </h2>
       <div id="realtime" class="db" style="display:none"></div>
       <div id="currentLevel" class="db"></div> 
       <h4> 5 Second Decibel Meter </h4>
@@ -424,7 +424,7 @@ ul li {
         var actualDB = dB;
         var level = document.getElementById('realtime');
         level.innerHTML = actualDB + ' dB';
-        lastNumber = actualDB;
+        lastNumber = dB;
         /*
         if(lastNumber < actualDB) {
           lastNumber = actualDB;
