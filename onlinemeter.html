@@ -422,6 +422,7 @@ ul li {
       meter.on('sample', function (dB, percent, value) {
         //var actualDB = Number((parseFloat(dB) + 110).toFixed(1));
         var actualDB = dB;
+        console.log(dB);
         var level = document.getElementById('realtime');
         level.innerHTML = actualDB + ' dB';
         lastNumber = dB;
