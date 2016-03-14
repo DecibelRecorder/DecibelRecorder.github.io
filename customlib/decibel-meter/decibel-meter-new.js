@@ -51,7 +51,7 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		console.log(srcs);
 		srcs.forEach( function (source) {
 			if (source.kind === 'audioinput') {
-				console.log('audio input');
+				console.log('audio input with id');
 				sources.push(source);
 				sourcesIndex[source.deviceId] = source;
 			}
@@ -73,7 +73,7 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		
 		var oldSource = meter.source,
 			changing = oldSource !== null,
-			constraints = { audio: { optional: [{sourceId: source.id}] } };	
+			constraints = { audio: { optional: [{sourceId: source.deviceId}] } };	
 		
 		meter.source = source;
 		
