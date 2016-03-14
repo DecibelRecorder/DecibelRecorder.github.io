@@ -405,6 +405,23 @@ ul li {
     document.addEventListener("DOMContentLoaded", function(event) { 
       console.log('Loaded');
 
+      
+        if(lastNumber === 0) {
+
+          var data = {
+            labels: [],
+            datasets: [
+            {
+              label: 'Decibels',
+              data: []
+            }]
+           };
+          window.ctx = document.getElementById("myChart").getContext("2d");
+          window.myNewChart = new Chart(ctx).Line(data);
+          window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
+          window.myMinuteChart = new Chart(ctxMinute).Line(data);
+        }
+
     });
     var connectCallback = function() {
       console.log('Started Listening');
@@ -436,21 +453,6 @@ ul li {
 
 
 
-        if(lastNumber === 0) {
-
-          var data = {
-            labels: [],
-            datasets: [
-            {
-              label: 'Decibels',
-              data: []
-            }]
-           };
-          window.ctx = document.getElementById("myChart").getContext("2d");
-          window.myNewChart = new Chart(ctx).Line(data);
-          window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
-          window.myMinuteChart = new Chart(ctxMinute).Line(data);
-        }
 
         lastNumber = dB;
         /*
