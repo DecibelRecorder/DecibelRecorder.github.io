@@ -36,16 +36,19 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		return undefined;
 	}
 	
-	if (!window.MediaStreamTrack.getSources) {
-		throw new Error('DecibelMeter: MediaStreamTrack.getSources() not supported');
-		return undefined;
-	}
+
+	if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+  console.log("enumerateDevices() not supported.");
+  return;
+}
 	
 	var sources = [],
 		sourcesIndex = {},
 		sourcesReady = false;
 	
-	MediaStreamTrack.getSources(function (srcs) {
+	navigator.mediaDevices.enumerateDevices().then(function (srcs) {
+		console.log('enumerateDevices');
+		console.log(srcs);
 		srcs.forEach( function (source) {
 			if (source.kind === 'audio') {
 				sources.push(source);
