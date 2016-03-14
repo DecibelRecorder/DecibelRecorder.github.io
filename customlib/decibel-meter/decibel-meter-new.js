@@ -231,11 +231,6 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 				
 				dispatch(meter, 'sample', [dB, percent, value]);
 			}
-
-
-
-
-			
 			requestAnimationFrame(update);
 		}
 		
