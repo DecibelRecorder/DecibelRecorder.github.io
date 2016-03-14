@@ -429,12 +429,15 @@ ul li {
       console.log('Listened');
     }
 
+    var meterWasReady = false;
+
     var lastNumber = 0;
     var storedData = [];
     var meter = DecibelMeter.create('unique-id');
+    console.log('Should be ready');
     meter.on('ready', function (meter, sources) {
+      //false = true;
       audioSources = sources;
-
       console.log('Meter ready');
       console.log(audioSources);
       if(!audioSources || audioSources.length < 1) {
@@ -457,6 +460,10 @@ ul li {
 
       });
     });
+
+    setTimeout(function() {
+      meter.
+    }, 3000);
 
     var emitName = 'dbChange';
 
