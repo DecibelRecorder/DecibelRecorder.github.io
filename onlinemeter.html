@@ -403,11 +403,12 @@ ul li {
     var currentLevel = 0;
     var currentPercentage = 0;
 
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Line([]);
-    var ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
-    var myMinuteChart = new Chart(ctxMinute).Line([]);
-
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      window.ctx = document.getElementById("myChart").getContext("2d");
+      window.myNewChart = new Chart(ctx).Line([]);
+      window.ctxMinute = document.getElementById("myMinuteChart").getContext("2d");
+      window.myMinuteChart = new Chart(ctxMinute).Line([]);
+    });
     var connectCallback = function() {
       meter.listen();
     }
@@ -469,11 +470,11 @@ ul li {
       var datetime = convertDateTime(currentdate);
         numberOfResults++;
         if(numberOfResults > 10) {
-          myNewChart.removeData();
+          window.myNewChart.removeData();
           numberOfResults--;
         }
-        myNewChart.addData([lastNumber], datetime);
-        myNewChart.update();
+        window.myNewChart.addData([lastNumber], datetime);
+        window.myNewChart.update();
     };
 
     var convertDateTime = function(currentdate) {
@@ -500,9 +501,9 @@ ul li {
           averageAmount += storeData[storeData.length - i];
         }
         averageAmount = averageAmount / numberOfAverage;
-        myMinuteChart.addData([lastNumber], datetime);
+        window.myMinuteChart.addData([lastNumber], datetime);
       }
-      myMinuteChart.update();
+      window.myMinuteChart.update();
     }
 
 
