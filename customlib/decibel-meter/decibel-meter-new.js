@@ -225,6 +225,11 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 				
 				meter.connection.analyser.getByteFrequencyData(meter.connection.lastSample);
 				
+				//Set the min and max
+				meter.connection.analyser.minDecibels = 12;
+				meter.connection.analyser.maxDecibels = 100;
+
+
 				var value = meter.connection.lastSample[0],
 					percent = value / 255,
 					dB = meter.connection.analyser.minDecibels + ((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent);
