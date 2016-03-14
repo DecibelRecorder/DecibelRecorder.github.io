@@ -231,66 +231,10 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 				
 				dispatch(meter, 'sample', [dB, percent, value]);
 			}
-			
-			/*
-			if (meter.listening && meter.handle.sample) {
-				
-
-				/*
-				meter.connection.analyser.getByteFrequencyData(meter.connection.lastSample);
-
-				var value = meter.connection.lastSample[0],
-					percent = value / 255,
-					dB = meter.connection.analyser.minDecibels
-						+ ((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent);
-
-				console.log(20 * Math.log10(
-					((meter.connection.analyser.maxDecibels - meter.connection.analyser.minDecibels) * percent) / meter.connection.analyser.minDecibels));
-
-				*/
-
-				/* note that getFloatTimeDomainData will be available in the near future,
-			   * if needed. */
-
-			 // meter.connection.analyser.getFloatFrequencyData(meter.connection.lastSample);
-			 // console.log(meter.connection.lastSample);
 
 
-			  meter.connection.analyser.getByteTimeDomainData(meter.connection.lastSample);
 
-			 // console.log(meter.connection.analyser.getFloatFrequencyData(meter.connection.lastSample));
-			  /* RMS stands for Root Mean Square, basically the root square of the
-			  * average of the square of each value. */
-			  var rms = 0;
-			  console.log(meter.connection.lastSample.length);
-			  for (var i = 0; i < meter.connection.lastSample.length; i++) {
-			    rms += meter.connection.lastSample[i] * meter.connection.lastSample[i];
-			  }
-			  //rms /= meter.connection.lastSample.length;
 
-			  rms = Math.sqrt(rms / meter.connection.lastSample.length);
-
-			  //var potentialDb = rms / 600; //16384
-			  console.log(rms);
-
-			  //16384
-			  //var mGain = 2500.0 / Math.pow(10.0, 90.0 / 20.0);
-			  var mGain = 128 / Math.pow(10.0, 31.0 / 20.0);
-			  var potentialDb = 20.0 * Math.log10(mGain * rms);
-
-			  //potentialDb =  45 + (potentialDb - 42) * 10;
-
-			  //rms = Math.sqrt(rms);
-
-			  var percent = 0;
-			  var value = 0;
-			  var dB = rms;
-
-			  //var dB = 20 * Math.log10(rms); 
-				dispatch(meter, 'sample', [potentialDb, percent, value]);
-			}
-
-			*/
 			
 			requestAnimationFrame(update);
 		}
