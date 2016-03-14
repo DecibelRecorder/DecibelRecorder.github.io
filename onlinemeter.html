@@ -423,6 +423,10 @@ ul li {
       audioSources = sources;
 
       console.log('Meter ready');
+      console.log(audioSources);
+      if(!audioSources || audioSources.length < 1) {
+        alert('Sorry, we could not detect a microphone, please refresh');
+      }
 
       meter.connect(audioSources[0], connectCallback); // connect to first source, assumes meter is ready
       meter.on('sample', function (dB, percent, value) {
