@@ -51,6 +51,7 @@ var DecibelMeter = ( function ( window, navigator, document, undefined ) {
 		console.log(srcs);
 		srcs.forEach( function (source) {
 			if (source.kind === 'audioinput') {
+				console.log('audio input');
 				sources.push(source);
 				sourcesIndex[source.id] = source;
 			}
